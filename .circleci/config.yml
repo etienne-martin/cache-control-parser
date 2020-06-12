@@ -1,0 +1,106 @@
+version: 2.1
+
+executors:
+  node-executor:
+    docker:
+      - image: circleci/node:12.6.0
+    working_directory: ~/cache-control-parser
+
+jobs:
+  deps:
+    executor: node-executor
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      - persist_to_workspace:
+          root: ~/cache-control-parser
+          paths:
+            - node_modules
+
+  build:
+    executor: node-executor
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/cache-control-parser
+
+      - run:
+          name: Build project
+          command: yarn build
+
+      - persist_to_workspace:
+          root: ~/cache-control-parser
+          paths:
+            - dist
+
+  test:
+    executor: node-executor
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/cache-control-parser
+
+      - run:
+          name: Run tests
+          command: yarn test
+
+      - persist_to_workspace:
+          root: ~/cache-control-parser
+          paths:
+            - coverage
+
+  publish:
+    executor: node-executor
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/cache-control-parser
+
+      - run:
+          name: Publish code coverage
+          command: yarn coverage
+
+      - run:
+          name: Publish to NPM
+          command: ./publish.sh $NPM_TOKEN
+
+workflows:
+  version: 2
+  build-test-and-publish:
+    jobs:
+      - deps
+
+      - build:
+          requires:
+            - deps
+
+      - test:
+          requires:
+            - deps
+            - build
+
+      - publish:
+          requires:
+            - build
+            - test
+
+          filters:
+            branches:
+              only: master
