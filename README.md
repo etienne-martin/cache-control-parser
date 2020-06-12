@@ -4,7 +4,6 @@ A lightweight cache-control parser.
 
 [![Coveralls github](https://img.shields.io/coveralls/github/etienne-martin/cache-control-parser.svg)](https://coveralls.io/github/etienne-martin/cache-control-parser)
 [![CircleCI build](https://img.shields.io/circleci/project/github/etienne-martin/cache-control-parser.svg)](https://circleci.com/gh/etienne-martin/cache-control-parser)
-[![node version](https://img.shields.io/node/v/cache-control-parser.svg)](https://www.npmjs.com/package/cache-control-parser)
 [![npm version](https://img.shields.io/npm/v/cache-control-parser.svg)](https://www.npmjs.com/package/cache-control-parser)
 [![npm monthly downloads](https://img.shields.io/npm/dm/cache-control-parser.svg)](https://www.npmjs.com/package/cache-control-parser)
 
