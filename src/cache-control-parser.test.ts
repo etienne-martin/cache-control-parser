@@ -15,11 +15,11 @@ const testSuite = (
       )
     ).toEqual({
       maxAge: 1,
-      sMaxAge: 2,
+      sharedMaxAge: 2,
       staleWhileRevalidate: 3,
       staleIfError: 4,
-      public: true,
-      private: true,
+      isPublic: true,
+      isPrivate: true,
       noStore: true,
       noCache: true,
       mustRevalidate: true,
@@ -34,15 +34,15 @@ const testSuite = (
       parser("   max-age =  60 ,    s-maxage  = 3600 , public   ")
     ).toEqual({
       maxAge: 60,
-      sMaxAge: 3600,
-      public: true
+      sharedMaxAge: 3600,
+      isPublic: true
     });
   });
 
   test("should support directives that are not separated by spaces", () => {
     expect(parser("max-age=60,public")).toEqual({
       maxAge: 60,
-      public: true
+      isPublic: true
     });
   });
 

@@ -23,11 +23,11 @@ export const cacheControlParser = (
 
         break;
       case "s-maxage":
-        const sMaxAge = parseInt(value, 10);
+        const sharedMaxAge = parseInt(value, 10);
 
-        if (isNaN(sMaxAge)) continue;
+        if (isNaN(sharedMaxAge)) continue;
 
-        cacheControl.sMaxAge = sMaxAge;
+        cacheControl.sharedMaxAge = sharedMaxAge;
         break;
       case "stale-while-revalidate":
         const staleWhileRevalidate = parseInt(value, 10);
@@ -44,10 +44,10 @@ export const cacheControlParser = (
         cacheControl.staleIfError = staleIfError;
         break;
       case "public":
-        cacheControl.public = true;
+        cacheControl.isPublic = true;
         break;
       case "private":
-        cacheControl.private = true;
+        cacheControl.isPrivate = true;
         break;
       case "no-store":
         cacheControl.noStore = true;
