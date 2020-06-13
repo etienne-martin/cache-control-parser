@@ -15,7 +15,7 @@ const testSuite = (
       )
     ).toEqual({
       maxAge: 1,
-      sharedMaxAge: 2,
+      sMaxAge: 2,
       staleWhileRevalidate: 3,
       staleIfError: 4,
       public: true,
@@ -34,7 +34,7 @@ const testSuite = (
       parser("   max-age =  60 ,    s-maxage  = 3600 , public   ")
     ).toEqual({
       maxAge: 60,
-      sharedMaxAge: 3600,
+      sMaxAge: 3600,
       public: true
     });
   });

@@ -1,6 +1,6 @@
 export interface CacheControl {
   maxAge?: number;
-  sharedMaxAge?: number;
+  sMaxAge?: number;
   staleWhileRevalidate?: number;
   staleIfError?: number;
   public?: boolean;
