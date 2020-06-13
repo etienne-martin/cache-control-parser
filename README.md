@@ -39,7 +39,7 @@ Output:
 
 ```json
 {
-  "public": true,
+  "isPublic": true,
   "maxAge": 86400,
   "noTransform": true
 }
