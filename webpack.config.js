@@ -10,6 +10,7 @@ module.exports = (env, argv = {}) => {
       index: "./src/index.ts"
     },
     output: {
+      globalObject: "this",
       filename: "[name].js",
       path: path.resolve(__dirname, "dist"),
       libraryTarget: "umd"
