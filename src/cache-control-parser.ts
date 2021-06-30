@@ -1,16 +1,32 @@
 import { CacheControl } from "./types";
 
-export const cacheControlParser = (
-  cacheControlHeader: string
-): CacheControl => {
+const SUPPORTED_DIRECTIVES: (keyof CacheControl)[] = [
+  "max-age",
+  "s-maxage",
+  "stale-while-revalidate",
+  "stale-if-error",
+  "public",
+  "private",
+  "no-store",
+  "no-cache",
+  "must-revalidate",
+  "proxy-revalidate",
+  "immutable",
+  "no-transform"
+];
+
+export const parse = (cacheControlHeader: string): CacheControl => {
   const cacheControl: CacheControl = {};
 
-  const directives = cacheControlHeader.split(",").map(str =>
-    str
-      .trim()
-      .split("=")
-      .map(str => str.trim())
-  );
+  const directives = cacheControlHeader
+    .toLowerCase()
+    .split(",")
+    .map(str =>
+      str
+        .trim()
+        .split("=")
+        .map(str => str.trim())
+    );
 
   for (const [directive, value] of directives) {
     switch (directive) {
@@ -19,7 +35,7 @@ export const cacheControlParser = (
 
         if (isNaN(maxAge)) continue;
 
-        cacheControl.maxAge = maxAge;
+        cacheControl["max-age"] = maxAge;
 
         break;
       case "s-maxage":
@@ -27,48 +43,67 @@ export const cacheControlParser = (
 
         if (isNaN(sharedMaxAge)) continue;
 
-        cacheControl.sharedMaxAge = sharedMaxAge;
+        cacheControl["s-maxage"] = sharedMaxAge;
         break;
       case "stale-while-revalidate":
         const staleWhileRevalidate = parseInt(value, 10);
 
         if (isNaN(staleWhileRevalidate)) continue;
 
-        cacheControl.staleWhileRevalidate = staleWhileRevalidate;
+        cacheControl["stale-while-revalidate"] = staleWhileRevalidate;
         break;
       case "stale-if-error":
         const staleIfError = parseInt(value, 10);
 
         if (isNaN(staleIfError)) continue;
 
-        cacheControl.staleIfError = staleIfError;
+        cacheControl["stale-if-error"] = staleIfError;
         break;
       case "public":
-        cacheControl.isPublic = true;
+        cacheControl.public = true;
         break;
       case "private":
-        cacheControl.isPrivate = true;
+        cacheControl.private = true;
         break;
       case "no-store":
-        cacheControl.noStore = true;
+        cacheControl["no-store"] = true;
         break;
       case "no-cache":
-        cacheControl.noCache = true;
+        cacheControl["no-cache"] = true;
         break;
       case "must-revalidate":
-        cacheControl.mustRevalidate = true;
+        cacheControl["must-revalidate"] = true;
         break;
       case "proxy-revalidate":
-        cacheControl.proxyRevalidate = true;
+        cacheControl["proxy-revalidate"] = true;
         break;
       case "immutable":
         cacheControl.immutable = true;
         break;
       case "no-transform":
-        cacheControl.noTransform = true;
+        cacheControl["no-transform"] = true;
         break;
     }
   }
 
   return cacheControl;
+};
+
+export const stringify = (cacheControl: CacheControl) => {
+  const directives: string[] = [];
+
+  for (const [key, value] of Object.entries(cacheControl)) {
+    if (!SUPPORTED_DIRECTIVES.includes(key as keyof CacheControl)) continue;
+
+    switch (typeof value) {
+      case "boolean":
+        directives.push(`${key}`);
+        break;
+      case "number":
+        directives.push(`${key}=${value}`);
+        break;
+    }
+  }
+
+  return directives.join(", ");
 };
