@@ -13,7 +13,8 @@ module.exports = (env, argv = {}) => {
       globalObject: "this",
       filename: "[name].js",
       path: path.resolve(__dirname, "dist"),
-      libraryTarget: "umd"
+      libraryTarget: "umd",
+      library: "cacheControl"
     },
     resolve: {
       extensions: [".ts", ".js"]

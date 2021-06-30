@@ -1,14 +1,14 @@
 export interface CacheControl {
-  maxAge?: number;
-  sharedMaxAge?: number;
-  staleWhileRevalidate?: number;
-  staleIfError?: number;
-  isPublic?: boolean;
-  isPrivate?: boolean;
-  noStore?: boolean;
-  noCache?: boolean;
-  mustRevalidate?: boolean;
-  proxyRevalidate?: boolean;
+  "max-age"?: number;
+  "s-maxage"?: number;
+  "stale-while-revalidate"?: number;
+  "stale-if-error"?: number;
+  public?: boolean;
+  private?: boolean;
+  "no-store"?: boolean;
+  "no-cache"?: boolean;
+  "must-revalidate"?: boolean;
+  "proxy-revalidate"?: boolean;
   immutable?: boolean;
-  noTransform?: boolean;
+  "no-transform"?: boolean;
 }

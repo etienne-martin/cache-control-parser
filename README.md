@@ -1,6 +1,6 @@
 # cache-control-parser
 
-A lightweight cache-control parser.
+A humble cache-control parser.
 
 [![Coveralls github](https://img.shields.io/coveralls/github/etienne-martin/cache-control-parser.svg)](https://coveralls.io/github/etienne-martin/cache-control-parser)
 [![CircleCI build](https://img.shields.io/circleci/project/github/etienne-martin/cache-control-parser.svg)](https://circleci.com/gh/etienne-martin/cache-control-parser)
@@ -9,9 +9,13 @@ A lightweight cache-control parser.
 
 ## Features
 
+- Fault-tolerant
+- Case-insensitive
 - No dependencies
 - Built-in TypeScript support
 - Thoroughly tested
+
+✨ **New:** you can now stringify parsed cache controls
 
 ## Getting Started
 
@@ -25,42 +29,64 @@ npm install cache-control-parser
 
 ### Usage
 
-```javascript
-import cacheControlParser from "cache-control-parser";
+**Example** - parse a cache control string into an object:
 
-const cacheControl = cacheControlParser(
+```javascript
+import { parse } from "cache-control-parser";
+
+const directives = parse(
   "public, max-age=86400, no-transform"
 );
 
-console.log(cacheControl);
+console.log(directives);
 ```
 
 Output:
 
 ```json
 {
-  "isPublic": true,
-  "maxAge": 86400,
-  "noTransform": true
+  "public": true,
+  "max-age": 86400,
+  "no-transform": true
 }
+```
+
+**Example** - stringify a cache control object into a string:
+
+```javascript
+import { stringify } from "cache-control-parser";
+
+const cacheControl = stringify({
+  "max-age": 300,
+  "s-maxage": 3600,
+  "public": true
+});
+
+console.log(cacheControl);
+```
+
+Output:
+
+```
+max-age=300, s-maxage=3600, public
 ```
 
 **Supported cache-control directives:**
 
 ```
 {
-  maxAge?: number;
-  sharedMaxAge?: number;
-  staleWhileRevalidate?: number;
-  staleIfError?: number;
-  isPublic?: boolean;
-  isPrivate?: boolean;
-  noStore?: boolean;
-  noCache?: boolean;
-  mustRevalidate?: boolean;
-  proxyRevalidate?: boolean;
-  immutable?: boolean;
-  noTransform?: boolean;
+  "max-age"?: number;
+  "s-maxage"?: number;
+  "stale-while-revalidate"?: number;
+  "stale-if-error"?: number;
+  "public"?: boolean;
+  "private"?: boolean;
+  "no-store"?: boolean;
+  "no-cache"?: boolean;
+  "must-revalidate"?: boolean;
+  "proxy-revalidate"?: boolean;
+  "immutable"?: boolean;
+  "no-transform"?: boolean;
 }
 ```
 
