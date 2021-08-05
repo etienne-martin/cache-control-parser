@@ -56,9 +56,11 @@ Output:
 ```javascript
 import { parse } from "cache-control-parser";
 
-const { "max-age": maxAge, "s-maxage": sMaxAge } = parse(
+const directives = parse(
   "max-age=300, s-maxage=0"
 );
+
+const { "max-age": maxAge, "s-maxage": sMaxAge } = directives;
 ```
 
 **Example** - retrieve the shared proxy cache TTL:
