@@ -1,6 +1,6 @@
 # cache-control-parser
 
-A humble cache-control parser.
+A humble [cache-control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) parser.
 
 [![Coveralls github](https://img.shields.io/coveralls/github/etienne-martin/cache-control-parser.svg)](https://coveralls.io/github/etienne-martin/cache-control-parser)
 [![CircleCI build](https://img.shields.io/circleci/project/github/etienne-martin/cache-control-parser.svg)](https://circleci.com/gh/etienne-martin/cache-control-parser)
@@ -15,7 +15,7 @@ A humble cache-control parser.
 - Built-in TypeScript support
 - Thoroughly tested
 
-✨ **New:** you can now stringify parsed cache controls
+✨ **New:** you can now stringify cache control objects
 
 ## Getting Started
 
@@ -29,13 +29,13 @@ npm install cache-control-parser
 
 ### Usage
 
-**Example** - parse a cache control string into an object:
+**Example** - parse a string of cache control directives into an object:
 
 ```javascript
 import { parse } from "cache-control-parser";
 
 const directives = parse(
-  "public, max-age=86400, no-transform"
+  "public, max-age=300, no-transform"
 );
 
 console.log(directives);
@@ -46,12 +46,42 @@ Output:
 ```json
 {
   "public": true,
-  "max-age": 86400,
+  "max-age": 300,
   "no-transform": true
 }
 ```
 
-**Example** - stringify a cache control object into a string:
+**Example** - destructuring the cache control object:
+
+```javascript
+import { parse } from "cache-control-parser";
+
+const { "max-age": maxAge, "s-maxage": sMaxAge } = parse(
+  "max-age=300, s-maxage=0"
+);
+```
+
+**Example** - retrieve the shared proxy cache TTL:
+
+```javascript
+import { parse } from "cache-control-parser";
+
+const cacheControl = parse(
+  "max-age=300, s-maxage=0"
+);
+
+const ttl = cacheControl["s-maxage"] ?? cacheControl["max-age"];
+
+console.log("ttl:", ttl);
+```
+
+Output:
+
+```json
+ttl: 0
+```
+
+**Example** - stringify a cache control object:
 
 ```javascript
 import { stringify } from "cache-control-parser";
