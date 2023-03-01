@@ -2,9 +2,8 @@
 
 A humble [cache-control](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cache-Control) parser.
 
+[![Build status](https://github.com/etienne-martin/cache-control-parser/workflows/Build/badge.svg)](https://github.com/etienne-martin/cache-control-parser/actions)
 [![Coveralls github](https://img.shields.io/coveralls/github/etienne-martin/cache-control-parser.svg)](https://coveralls.io/github/etienne-martin/cache-control-parser)
-[![CircleCI build](https://img.shields.io/circleci/project/github/etienne-martin/cache-control-parser.svg)](https://circleci.com/gh/etienne-martin/cache-control-parser)
-[![npm version](https://img.shields.io/npm/v/cache-control-parser.svg)](https://www.npmjs.com/package/cache-control-parser)
 [![npm monthly downloads](https://img.shields.io/npm/dm/cache-control-parser.svg)](https://www.npmjs.com/package/cache-control-parser)
 
 ## Features
