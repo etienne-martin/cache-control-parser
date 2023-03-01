@@ -121,7 +121,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 };
 ```
 
-**Supported cache-control directives:**
+## Supported Directives
 
 ```
 {
