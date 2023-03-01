@@ -79,7 +79,7 @@ console.log("ttl:", ttl);
 
 Output:
 
-```json
+```
 ttl: 0
 ```
 
@@ -101,6 +101,24 @@ Output:
 
 ```
 max-age=300, s-maxage=3600, public
+```
+
+**Example** - Next.js API routes response header:
+
+```typescript
+import { stringify } from "cache-control-parser";
+import type { NextApiRequest, NextApiResponse } from "next";
+
+export default (req: NextApiRequest, res: NextApiResponse) => {
+  res.setHeader(
+    "Cache-Control",
+    stringify({
+      "max-age": 300,
+    })
+  );
+
+  res.send("Hello world");
+};
 ```
 
 **Supported cache-control directives:**
@@ -127,7 +145,7 @@ max-age=300, s-maxage=3600, public
 Type definitions are included in this library and exposed via:
 
 ```typescript
-import { CacheControl } from "cache-control-parser";
+import type { CacheControl } from "cache-control-parser";
 ```
 
 ## Built with
