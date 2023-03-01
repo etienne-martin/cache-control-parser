@@ -103,7 +103,7 @@ Output:
 max-age=300, s-maxage=3600, public
 ```
 
-**Example** - Next.js API routes response header:
+**Example** - Next.js API route response header:
 
 ```typescript
 import { stringify } from "cache-control-parser";
