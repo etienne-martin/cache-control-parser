@@ -67,11 +67,9 @@ const { "max-age": maxAge, "s-maxage": sMaxAge } = directives;
 ```javascript
 import { parse } from "cache-control-parser";
 
-const cacheControl = parse(
+const { "max-age": maxAge, "s-maxage": ttl = maxAge } = parse(
   "max-age=300, s-maxage=0"
 );
-
-const ttl = cacheControl["s-maxage"] ?? cacheControl["max-age"];
 
 console.log("ttl:", ttl);
 ```
