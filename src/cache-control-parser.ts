@@ -97,7 +97,7 @@ export const stringify = (cacheControl: CacheControl) => {
 
     switch (typeof value) {
       case "boolean":
-        directives.push(`${key}`);
+        value && directives.push(`${key}`);
         break;
       case "number":
         directives.push(`${key}=${value}`);
