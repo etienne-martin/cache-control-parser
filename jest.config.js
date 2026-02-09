@@ -3,7 +3,7 @@ module.exports = {
   transform: {
     "^.+\\.ts$": ["ts-jest", { tsconfig: "tsconfig.json" }]
   },
-  moduleFileExtensions: ["ts", "js", "jsx", "json", "node"],
+  moduleFileExtensions: ["ts", "js", "json", "node"],
   coveragePathIgnorePatterns: ["/node_modules/", "/coverage/", "/dist/"],
   coverageThreshold: {
     global: {
