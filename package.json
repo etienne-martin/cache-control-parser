@@ -31,7 +31,7 @@
     "predev": "yarn cleanup",
     "prebuild": "yarn cleanup",
     "prepack": "yarn build",
-    "cleanup": "node -e \"require('node:fs').rmSync('./dist', { recursive: true, force: true })\"",
+    "cleanup": "rm -rf ./dist",
     "test": "jest src --coverage --verbose --runInBand",
     "test:watch": "jest src --coverage --verbose --watch",
     "lint": "eslint src --ext .ts --max-warnings 0"
