@@ -31,8 +31,6 @@
     "predev": "yarn cleanup",
     "prebuild": "yarn cleanup",
     "prepack": "yarn build",
-    "pretest": "yarn build",
-    "pretest:watch": "yarn build",
     "cleanup": "node -e \"require('node:fs').rmSync('./dist', { recursive: true, force: true })\"",
     "test": "jest src --coverage --verbose --runInBand",
     "test:watch": "jest src --coverage --verbose --watch",
