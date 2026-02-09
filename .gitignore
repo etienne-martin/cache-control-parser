@@ -1,10 +1,5 @@
 node_modules
 .idea
-.DS_Store
 coverage
 dist
-*.tgz
-*.log
-.npmrc
-.env
 yarn-error.log
