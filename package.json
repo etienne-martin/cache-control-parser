@@ -1,6 +1,6 @@
 {
   "name": "cache-control-parser",
-  "version": "2.0.7",
+  "version": "2.2.0",
   "description": "A humble cache-control parser",
   "homepage": "https://github.com/etienne-martin/cache-control-parser",
   "keywords": [
