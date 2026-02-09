@@ -25,6 +25,10 @@
   },
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ],
   "scripts": {
     "dev": "concurrently 'webpack --mode development --watch' 'tsc -p tsconfig.build.json --watch'",
     "build": "concurrently 'webpack --mode production' 'tsc -p tsconfig.build.json'",
