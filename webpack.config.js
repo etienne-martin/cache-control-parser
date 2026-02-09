@@ -4,17 +4,17 @@ module.exports = (env, argv = {}) => {
   return {
     mode: argv.mode || "production",
     entry: {
-      index: "./src/index.ts"
+      index: "./src/index.ts",
     },
     output: {
       globalObject: "this",
       filename: "[name].js",
       path: path.resolve(__dirname, "dist"),
       libraryTarget: "umd",
-      library: "cacheControl"
+      library: "cacheControl",
     },
     resolve: {
-      extensions: [".ts", ".js"]
+      extensions: [".ts", ".js"],
     },
     module: {
       rules: [
@@ -25,18 +25,18 @@ module.exports = (env, argv = {}) => {
             {
               loader: "babel-loader",
               options: {
-                presets: ["@babel/typescript", ["@babel/preset-env"]]
-              }
-            }
-          ]
-        }
-      ]
+                presets: ["@babel/typescript", ["@babel/preset-env"]],
+              },
+            },
+          ],
+        },
+      ],
     },
     ignoreWarnings: [
-      warning =>
+      (warning) =>
         typeof warning?.message === "string" &&
-        warning.message.includes("export 'CacheControl'")
+        warning.message.includes("export 'CacheControl'"),
     ],
-    plugins: []
+    plugins: [],
   };
 };

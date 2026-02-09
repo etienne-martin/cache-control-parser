@@ -34,7 +34,7 @@
     "cleanup": "rm -rf ./dist",
     "test": "jest src --coverage --verbose --runInBand",
     "test:watch": "jest src --coverage --verbose --watch",
-    "lint": "eslint src --ext .ts --max-warnings 0"
+    "lint": "eslint . --ext .ts,.js --max-warnings 0"
   },
   "dependencies": {},
   "devDependencies": {
