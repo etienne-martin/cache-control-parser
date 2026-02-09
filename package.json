@@ -34,8 +34,7 @@
     "cleanup": "node -e \"require('node:fs').rmSync('./dist', { recursive: true, force: true })\"",
     "test": "jest src --coverage --verbose --runInBand",
     "test:watch": "jest src --coverage --verbose --watch",
-    "lint": "eslint src --ext .ts --max-warnings 0",
-    "format": "prettier --write \"src/**/*.ts\""
+    "lint": "eslint src --ext .ts --max-warnings 0"
   },
   "dependencies": {},
   "devDependencies": {
