@@ -12,7 +12,7 @@ const SUPPORTED_DIRECTIVES: (keyof CacheControl)[] = [
   "must-revalidate",
   "proxy-revalidate",
   "immutable",
-  "no-transform"
+  "no-transform",
 ];
 
 export const parse = (cacheControlHeader: string): CacheControl => {
@@ -21,11 +21,11 @@ export const parse = (cacheControlHeader: string): CacheControl => {
   const directives = cacheControlHeader
     .toLowerCase()
     .split(",")
-    .map(str =>
+    .map((str) =>
       str
         .trim()
         .split("=")
-        .map(str => str.trim())
+        .map((str) => str.trim()),
     );
 
   for (const [directive, value] of directives) {
@@ -97,7 +97,9 @@ export const stringify = (cacheControl: CacheControl) => {
 
     switch (typeof value) {
       case "boolean":
-        value && directives.push(`${key}`);
+        if (value) {
+          directives.push(`${key}`);
+        }
         break;
       case "number":
         directives.push(`${key}=${value}`);

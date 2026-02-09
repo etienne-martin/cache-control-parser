@@ -1,22 +1,27 @@
 module.exports = {
+  ignorePatterns: ["dist/", "coverage/"],
   parser: "@typescript-eslint/parser",
   extends: [
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "prettier",
-    "prettier/@typescript-eslint"
   ],
   plugins: ["@typescript-eslint"],
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: "module"
+  env: {
+    es2020: true,
+    node: true,
+    jest: true,
   },
-  rules: {
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/no-namespace": 0,
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/prefer-optional-chain": 1,
-    "no-console": ["error"]
-  }
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: "module",
+  },
+  overrides: [
+    {
+      files: ["**/*.js"],
+      rules: {
+        "@typescript-eslint/no-require-imports": 0,
+      },
+    },
+  ],
+  rules: {},
 };

@@ -155,7 +155,7 @@ import type { CacheControl } from "cache-control-parser";
 
 When contributing to this project, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
 
-Update the [README.md](https://github.com/etienne-martin/cache-control-parser/blob/master/README.md) with details of changes to the library.
+Update the [README.md](https://github.com/etienne-martin/cache-control-parser/blob/main/README.md) with details of changes to the library.
 
 Execute `yarn test` and update the tests if needed.
 

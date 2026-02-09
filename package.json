@@ -1,6 +1,6 @@
 {
   "name": "cache-control-parser",
-  "version": "2.0.6",
+  "version": "2.2.0",
   "description": "A humble cache-control parser",
   "homepage": "https://github.com/etienne-martin/cache-control-parser",
   "keywords": [
@@ -25,39 +25,48 @@
   },
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts"
+  ],
   "scripts": {
-    "dev": "concurrently 'webpack --mode development --watch' 'tsc --watch'",
-    "build": "concurrently 'webpack --mode production' 'tsc'",
+    "dev": "concurrently 'webpack --mode development --watch' 'tsc -p tsconfig.build.json --watch'",
+    "build": "concurrently 'webpack --mode production' 'tsc -p tsconfig.build.json'",
     "predev": "yarn cleanup",
     "prebuild": "yarn cleanup",
+    "prepack": "yarn build",
     "cleanup": "rm -rf ./dist",
     "test": "jest src --coverage --verbose --runInBand",
     "test:watch": "jest src --coverage --verbose --watch",
-    "coverage": "coveralls < ./coverage/lcov.info"
+    "lint": "eslint . --ext .ts,.js --max-warnings 0"
   },
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "7.5.0",
-    "@babel/plugin-proposal-class-properties": "7.7.0",
-    "@babel/plugin-proposal-optional-chaining": "7.7.5",
-    "@babel/preset-env": "7.5.5",
-    "@babel/preset-typescript": "7.3.3",
-    "@types/jest": "22.2.3",
-    "@typescript-eslint/eslint-plugin": "2.11.0",
-    "@typescript-eslint/parser": "2.11.0",
-    "babel-loader": "8.0.6",
-    "concurrently": "5.1.0",
-    "coveralls": "3.0.9",
-    "eslint": "6.7.2",
-    "eslint-config-prettier": "6.7.0",
-    "eslint-loader": "3.0.3",
-    "eslint-plugin-prettier": "3.1.1",
-    "fork-ts-checker-webpack-plugin": "3.0.1",
-    "jest": "22.4.3",
-    "prettier": "1.19.1",
-    "ts-jest": "22.4.3",
-    "typescript": "3.7.3",
-    "webpack": "4.36.0",
-    "webpack-cli": "3.3.5"
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-typescript": "^7.28.5",
+    "@types/jest": "^29.5.14",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "babel-loader": "^10.0.0",
+    "concurrently": "^9.2.1",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "jest": "^29.7.0",
+    "prettier": "^3.8.1",
+    "ts-jest": "^29.4.6",
+    "typescript": "^5.9.3",
+    "webpack": "^5.105.0",
+    "webpack-cli": "^6.0.1"
+  },
+  "resolutions": {
+    "ansi-regex": "5.0.1",
+    "kind-of": "6.0.3",
+    "minimist": "1.2.8",
+    "**/babel-plugin-istanbul/**/semver": "6.3.1",
+    "**/glob/minimatch": "3.1.2",
+    "**/@istanbuljs/load-nyc-config/**/js-yaml": "3.14.2",
+    "**/test-exclude/minimatch": "3.1.2"
   }
 }
