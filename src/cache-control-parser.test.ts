@@ -4,7 +4,10 @@ import {
   stringify as compiledStringifier,
 } from "../dist";
 
-const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
+describe.each<[string, typeof parse, typeof stringify]>([
+  ["source", parse, stringify],
+  ["compiled", compiledParser, compiledStringifier],
+])("%s", (_name, parser, stringifier) => {
   describe("parse", () => {
     it("should parse empty cache-control header", () => {
       expect(parser("")).toEqual({});
@@ -134,12 +137,4 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
       ).toEqual("max-age=1");
     });
   });
-};
-
-describe("source", () => {
-  testSuite(parse, stringify);
-});
-
-describe("compiled", () => {
-  testSuite(compiledParser, compiledStringifier);
 });
