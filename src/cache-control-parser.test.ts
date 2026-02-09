@@ -1,7 +1,7 @@
 import { CacheControl, parse, stringify } from "./";
 import {
   parse as compiledParser,
-  stringify as compiledStringifier
+  stringify as compiledStringifier,
 } from "../dist";
 
 const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
@@ -13,8 +13,8 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
     it("should parse both boolean and numeric directives", () => {
       expect(
         parser(
-          "max-age=1, s-maxage=2, stale-while-revalidate=3, stale-if-error=4, public, private, no-store, no-cache, must-revalidate, proxy-revalidate, immutable, no-transform"
-        )
+          "max-age=1, s-maxage=2, stale-while-revalidate=3, stale-if-error=4, public, private, no-store, no-cache, must-revalidate, proxy-revalidate, immutable, no-transform",
+        ),
       ).toEqual({
         "max-age": 1,
         "s-maxage": 2,
@@ -27,17 +27,17 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
         "must-revalidate": true,
         "proxy-revalidate": true,
         immutable: true,
-        "no-transform": true
+        "no-transform": true,
       });
     });
 
     it("should trim directives", () => {
       expect(
-        parser("   max-age =  60 ,    s-maxage  = 3600 , public   ")
+        parser("   max-age =  60 ,    s-maxage  = 3600 , public   "),
       ).toEqual({
         "max-age": 60,
         "s-maxage": 3600,
-        public: true
+        public: true,
       });
     });
 
@@ -46,35 +46,35 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
         {
           "max-age": 1,
           "s-maxage": 2,
-          "stale-while-revalidate": 3
-        }
+          "stale-while-revalidate": 3,
+        },
       );
     });
 
     it("should support directives that are not separated by spaces", () => {
       expect(parser("max-age=60,public")).toEqual({
         "max-age": 60,
-        public: true
+        public: true,
       });
     });
 
     it("should override previously declared directives", () => {
       expect(parser("max-age=1, max-age=2")).toEqual({
-        "max-age": 2
+        "max-age": 2,
       });
     });
 
     it("should ignore invalid directives", () => {
       expect(
         parser(
-          "max-age=NaN, s-maxage=NaN, stale-while-revalidate=NaN, stale-if-error=NaN"
-        )
+          "max-age=NaN, s-maxage=NaN, stale-while-revalidate=NaN, stale-if-error=NaN",
+        ),
       ).toEqual({});
     });
 
     it("should not override previously declared directives if the directive is invalid", () => {
       expect(parser("max-age=1, max-age=NaN")).toEqual({
-        "max-age": 1
+        "max-age": 1,
       });
     });
 
@@ -106,10 +106,10 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
           "must-revalidate": true,
           "proxy-revalidate": true,
           immutable: true,
-          "no-transform": true
-        })
+          "no-transform": true,
+        }),
       ).toEqual(
-        "max-age=1, s-maxage=2, stale-while-revalidate=3, stale-if-error=4, public, private, no-store, no-cache, must-revalidate, proxy-revalidate, immutable, no-transform"
+        "max-age=1, s-maxage=2, stale-while-revalidate=3, stale-if-error=4, public, private, no-store, no-cache, must-revalidate, proxy-revalidate, immutable, no-transform",
       );
     });
 
@@ -118,8 +118,8 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
         stringifier({
           "max-age": 1,
           foo: 2,
-          bar: true
-        } as CacheControl)
+          bar: true,
+        } as CacheControl),
       ).toEqual("max-age=1");
     });
 
@@ -129,8 +129,8 @@ const testSuite = (parser: typeof parse, stringifier: typeof stringify) => {
           "max-age": 1,
           public: false,
           private: false,
-          immutable: false
-        } as CacheControl)
+          immutable: false,
+        } as CacheControl),
       ).toEqual("max-age=1");
     });
   });

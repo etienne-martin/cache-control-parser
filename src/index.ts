@@ -1,2 +1,2 @@
 export * from "./cache-control-parser";
-export { CacheControl } from "./types";
+export type { CacheControl } from "./types";

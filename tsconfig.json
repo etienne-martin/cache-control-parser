@@ -11,11 +11,9 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "declaration": true,
-    "declarationDir": "./dist",
-    "emitDeclarationOnly": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "noEmit": true
   },
-  "exclude": ["node_modules"],
-  "files": ["./src/index.ts"]
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist", "coverage"]
 }
