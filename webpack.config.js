@@ -32,11 +32,6 @@ module.exports = (env, argv = {}) => {
         },
       ],
     },
-    ignoreWarnings: [
-      (warning) =>
-        typeof warning?.message === "string" &&
-        warning.message.includes("export 'CacheControl'"),
-    ],
     plugins: [],
   };
 };
