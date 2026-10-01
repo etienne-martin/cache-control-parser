@@ -16,7 +16,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node-version: [22.x, 24.x]
+        node-version: [20.x, 22.x]
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -41,7 +41,7 @@ jobs:
         run: pnpm test
 
       - name: Publish code coverage
-        if: matrix.node-version == '22.x' && endsWith(github.ref, '/main') && github.event_name == 'push'
+        if: matrix.node-version == '20.x' && endsWith(github.ref, '/main') && github.event_name == 'push'
         uses: coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329 # v2.3.8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,5 +49,16 @@ jobs:
           format: lcov
 
       - name: Publish to npm
-        if: matrix.node-version == '22.x' && endsWith(github.ref, '/main') && github.event_name == 'push'
+        if: matrix.node-version == '20.x' && endsWith(github.ref, '/main') && github.event_name == 'push'
         run: ./publish.sh ${{ secrets.NPM_AUTH_TOKEN }}
+
+  ci:
+    name: CI
+    if: always()
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Require successful builds
+        env:
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: test "$BUILD_RESULT" = success
