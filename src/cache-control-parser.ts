@@ -1,4 +1,4 @@
-import { CacheControl } from "./types";
+import type { CacheControl } from "./types";
 
 const SUPPORTED_DIRECTIVES: (keyof CacheControl)[] = [
   "max-age",
