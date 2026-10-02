@@ -170,12 +170,6 @@ Run the full test suite:
 pnpm test
 ```
 
-Run tests in watch mode:
-
-```bash
-pnpm test:watch
-```
-
 ## Authors
 
 - **Etienne Martin** - _Initial work_ - [etiennemartin.ca](https://etiennemartin.ca/)

@@ -37,10 +37,8 @@
     "prebuild": "pnpm run cleanup",
     "prepack": "pnpm run build",
     "pretest": "pnpm run build",
-    "pretest:watch": "pnpm run build",
     "cleanup": "rm -rf ./dist",
     "test": "jest src --coverage --verbose --runInBand",
-    "test:watch": "jest src --coverage --verbose --watch",
     "lint": "eslint . --ext .ts,.js --max-warnings 0"
   },
   "dependencies": {},
