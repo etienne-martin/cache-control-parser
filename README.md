@@ -148,6 +148,7 @@ import type { CacheControl } from "cache-control-parser";
 ## Built with
 
 - [node.js](https://nodejs.org/en/) - Cross-platform JavaScript run-time environment for executing JavaScript code server-side.
+- [pnpm](https://pnpm.io/) - Fast, disk-efficient package manager.
 - [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript that compiles to plain JavaScript.
 - [Jest](https://facebook.github.io/jest/) - Delightful JavaScript Testing.
 
@@ -157,20 +158,16 @@ When contributing to this project, please first discuss the change you wish to m
 
 Update the [README.md](https://github.com/etienne-martin/cache-control-parser/blob/main/README.md) with details of changes to the library.
 
-Execute `yarn test` and update the tests if needed.
+Install dependencies with `pnpm install`.
+
+Execute `pnpm test` and update the tests if needed.
 
 ### Testing
 
 Run the full test suite:
 
 ```bash
-yarn test
-```
-
-Run tests in watch mode:
-
-```bash
-yarn test:watch
+pnpm test
 ```
 
 ## Authors
