@@ -1,4 +1,5 @@
-import { CacheControl, parse, stringify } from "./";
+import { parse, stringify } from "./";
+import type { CacheControl } from "./";
 import {
   parse as compiledParser,
   stringify as compiledStringifier,
