@@ -13,6 +13,10 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-latest
+    environment: ${{ matrix.node-version == '24.x' && github.event_name == 'push' && github.ref == 'refs/heads/main' && 'npm' || '' }}
+    permissions:
+      contents: read
+      id-token: write
     strategy:
       fail-fast: false
       matrix:
@@ -49,8 +53,8 @@ jobs:
           format: lcov
 
       - name: Publish to npm
-        if: matrix.node-version == '22.x' && endsWith(github.ref, '/main') && github.event_name == 'push'
-        run: ./publish.sh ${{ secrets.NPM_AUTH_TOKEN }}
+        if: matrix.node-version == '24.x' && endsWith(github.ref, '/main') && github.event_name == 'push'
+        run: ./publish.sh
 
   ci:
     name: CI
