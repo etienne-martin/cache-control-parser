@@ -123,6 +123,8 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 ```
 {
   "max-age"?: number;
+  "max-stale"?: number | boolean;
+  "min-fresh"?: number;
   "s-maxage"?: number;
   "stale-while-revalidate"?: number;
   "stale-if-error"?: number;
@@ -131,11 +133,17 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
   "no-store"?: boolean;
   "no-cache"?: boolean;
   "must-revalidate"?: boolean;
+  "must-understand"?: boolean;
+  "only-if-cached"?: boolean;
   "proxy-revalidate"?: boolean;
   "immutable"?: boolean;
   "no-transform"?: boolean;
 }
 ```
+
+`max-stale` is `true` when it appears without a value. Numeric directives accept
+decimal delta-seconds, including their quoted form. Malformed numeric values and
+unknown extension directives are ignored.
 
 ## TypeScript
 
